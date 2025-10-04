@@ -1,0 +1,28 @@
+# Staging Environment Configuration
+
+environment: staging
+
+# Service settings
+service:
+  replicas: 2
+  resources:
+    cpu: "1000m"
+    memory: "1Gi"
+
+# Database settings
+database:
+  host: staging-db.example.com
+  port: 5432
+  name: perekine_staging
+  ssl: true
+
+# Logging
+logging:
+  level: info
+  verbose: false
+
+# Feature flags
+features:
+  experimental_features: true
+  debug_mode: false
+

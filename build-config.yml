@@ -1,0 +1,81 @@
+# Build Configuration for perekine-service
+
+# Build settings
+build:
+  # Build tool (e.g., docker, gradle, npm, make)
+  tool: docker
+  
+  # Build timeout in minutes
+  timeout: 30
+  
+  # Build environment variables
+  env:
+    NODE_ENV: production
+    BUILD_TIMESTAMP: auto
+  
+  # Build steps
+  steps:
+    - name: Setup
+      command: echo "Setting up build environment"
+    
+    - name: Install dependencies
+      command: echo "Installing dependencies"
+    
+    - name: Run tests
+      command: echo "Running tests"
+    
+    - name: Build
+      command: echo "Building application"
+
+# Deployment settings
+deployment:
+  enabled: true
+  
+  # Target environments
+  targets:
+    - name: staging
+      branch: develop
+      auto_deploy: true
+    
+    - name: production
+      branch: main
+      auto_deploy: false  # Requires manual approval
+      
+# Notification settings
+notifications:
+  slack:
+    enabled: false
+    webhook_url: ""
+  
+  email:
+    enabled: false
+    recipients: []
+
+# Artifact settings
+artifacts:
+  retention_days: 30
+  
+  # Paths to include in artifacts
+  include:
+    - dist/
+    - build/
+    - artifacts/
+  
+  # Artifact naming pattern
+  name_pattern: "build-${COMMIT_SHA}-${TIMESTAMP}"
+
+# Quality checks
+quality:
+  # Run linting
+  linting:
+    enabled: true
+  
+  # Run tests
+  testing:
+    enabled: true
+    coverage_threshold: 80
+  
+  # Security scanning
+  security:
+    enabled: true
+

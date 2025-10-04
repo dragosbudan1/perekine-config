@@ -1,0 +1,28 @@
+# Production Environment Configuration
+
+environment: production
+
+# Service settings
+service:
+  replicas: 3
+  resources:
+    cpu: "2000m"
+    memory: "2Gi"
+
+# Database settings
+database:
+  host: prod-db.example.com
+  port: 5432
+  name: perekine_prod
+  ssl: true
+
+# Logging
+logging:
+  level: warn
+  verbose: false
+
+# Feature flags
+features:
+  experimental_features: false
+  debug_mode: false
+
